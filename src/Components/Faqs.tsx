@@ -35,8 +35,8 @@ const FAQs: React.FC = () => {
     ];
 
     return (
-        <div className="max-w-4xl mx-auto py-8 min-h-screen bg-gray-50">
-            <Typography variant="h4" gutterBottom className="text-center text-3xl font-bold mb-8">
+        <div className="max-w-4xl mx-auto py-8  bg-gray-50">
+            <Typography variant="h4" gutterBottom className="text-center text-3xl font-bold mb-8 text-black">
                 FAQs
             </Typography>
             {faqs.map((faq, index) => (

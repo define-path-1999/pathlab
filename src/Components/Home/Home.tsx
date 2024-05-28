@@ -174,7 +174,7 @@ const Homepage: React.FC = () => {
 
   return (
     <>
-      <div className="overflow-hidden  h-screen w-screen bg-gray-50">
+      <div className="overflow-hidden  h-screen w-screen bg-gray-50 text-black">
         <nav className="bg-black p-4 w-screen">
           <div className=" flex justify-between items-center">
             <div className="text-white font-semibold text-xl w-28">
@@ -261,7 +261,7 @@ const Homepage: React.FC = () => {
           </div>
         </div>
         <div className="md:w-1/2">
-          <h1 className="text-3xl text-center font-semibold mb-4">Booking Form</h1>
+          <h1 className="text-3xl text-center font-semibold mb-4 text-black">Booking Form</h1>
           <form onSubmit={handleSubmit} className="max-w-md mx-4 md:mx-auto">
             <div className="mb-4">
               <TextField
@@ -362,7 +362,7 @@ const Homepage: React.FC = () => {
       <div className='bg-gray-50'>
         <FAQs />
       </div>
-
+      <hr />
       <Testimonials />
       <Footer handleservices={scrollToServices} handleappointment={scrollToForm} />
     </>

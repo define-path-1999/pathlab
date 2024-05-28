@@ -10,56 +10,57 @@ interface Testimonial {
 const Testimonials = () => {
     const [currentPage, setCurrentPage] = useState(0);
     const testimonialsPerPage = 3;
-    const testimonials: Testimonial[] = [
+    const testimonials = [
         {
-            name: "Dr. Emily Wilson",
-            field: "General Practitioner",
-            message:
-                "As a general practitioner, I rely heavily on accurate and timely lab results for diagnosing and treating patients. This pathlab has consistently provided exceptional service with their accurate testing and prompt report delivery. Their professionalism and commitment to quality are truly commendable.",
+          name: "Dr. Anita Gupta",
+          field: "Hematologist",
+          message: "As a hematologist, I highly value the accurate and comprehensive hematology services provided by this pathlab. Their detailed blood analysis has been instrumental in diagnosing and monitoring various blood disorders in my patients, enabling me to provide effective treatment plans.",
+          service: "Hematology",
+          image: "https://example.com/images/dr-anita-gupta.jpg"
         },
         {
-            name: "Michael Johnson",
-            field: "Patient",
-            message:
-                "I've been a patient at this pathlab for several years, and I'm always impressed by the staff's friendly and caring approach. The phlebotomists are skilled and make the process as comfortable as possible. The detailed reports are easy to understand, and I appreciate the convenience of their online portal.",
+          name: "Rahul Sharma",
+          field: "Patient",
+          message: "I recently underwent a comprehensive biochemical analysis at this pathlab, and I was impressed by their professionalism and attention to detail. The staff explained the process clearly, and the detailed report provided valuable insights into my overall health.",
+          service: "Biochemistry",
+          image: "https://example.com/images/rahul-sharma.png"
         },
         {
-            name: "Dr. Sarah Thompson",
-            field: "Oncologist",
-            message:
-                "As an oncologist, I heavily rely on accurate and comprehensive lab testing for my cancer patients. This pathlab has consistently delivered exceptional results, enabling me to provide the best possible care. Their state-of-the-art equipment and highly qualified personnel ensure reliable and timely diagnoses.",
+          name: "Dr. Nisha Kapoor",
+          field: "Infectious Disease Specialist",
+          message: "As an infectious disease specialist, I rely heavily on accurate microbiology testing to diagnose and treat my patients effectively. This pathlab's microbiology services have consistently provided reliable results, enabling me to make informed decisions and provide appropriate treatment plans.",
+          service: "Microbiology",
+          image: "https://example.com/images/dr-nisha-kapoor.jpg"
         },
         {
-            name: "David Lee",
-            field: "Patient",
-            message:
-                "I recently had a series of tests done at this pathlab, and I was thoroughly impressed by their efficiency and attention to detail. The staff was courteous and explained the process clearly. The results were delivered promptly, and the report was easy to understand. I highly recommend their services.",
+          name: "Amit Singh",
+          field: "Patient",
+          message: "I have an autoimmune disorder, and the immunology services provided by this pathlab have been invaluable in monitoring my condition. The staff is knowledgeable and compassionate, and the accurate test results have helped my doctor make informed decisions about my treatment.",
+          service: "Immunology",
+          image: "https://example.com/images/amit-singh.png"
         },
         {
-            name: "Dr. Samantha Miller",
-            field: "Gynecologist",
-            message:
-                "As a gynecologist, I trust this pathlab implicitly for all my patients' testing needs. Their commitment to accuracy and confidentiality is exceptional. The clear and detailed reports they provide have been invaluable in diagnosing and treating various conditions. I'm grateful for their professionalism and expertise.",
+          name: "Dr. Priya Desai",
+          field: "Oncologist",
+          message: "As an oncologist, I heavily rely on advanced molecular diagnostics to provide personalized treatment plans for my cancer patients. This pathlab's molecular assays have been instrumental in detecting and monitoring various cancers, allowing me to make informed decisions and provide targeted therapies.",
+          service: "Molecular Assays",
+          image: "https://example.com/images/dr-priya-desai.jpg"
         },
         {
-            name: "Tom Wilson",
-            field: "Patient",
-            message:
-                "I've been a patient at this pathlab for years, and I can't say enough good things about their service. The staff is always friendly and efficient, and the wait times are minimal. The online portal makes scheduling appointments and accessing results a breeze. I highly recommend their services.",
+          name: "Ravi Patel",
+          field: "Patient",
+          message: "I recently underwent a comprehensive health checkup at this pathlab, and I was thoroughly impressed by their wellness package. The staff was professional and courteous, and the thorough testing provided valuable insights into my overall health and potential risk factors.",
+          service: "Wellness Packages",
+          image: "https://example.com/images/ravi-patel.png"
         },
         {
-            name: "Dr. Robert Davis",
-            field: "Endocrinologist",
-            message:
-                "As an endocrinologist, I rely heavily on precise lab results to diagnose and monitor various hormonal conditions. This pathlab's attention to detail and accuracy is exceptional. Their prompt report delivery and comprehensive analysis have been invaluable in providing the best possible care for my patients.",
-        },
-        {
-            name: "Jennifer Lee",
-            field: "Patient",
-            message:
-                "I recently had a series of tests done at this pathlab, and I was thoroughly impressed by their customer service and attention to detail. The staff was courteous and made me feel comfortable throughout the process. The results were delivered promptly, and the report was easy to understand. I highly recommend their services.",
-        },
-    ];
+          name: "Dr. Sneha Sharma",
+          field: "Pathologist",
+          message: "As a pathologist, I highly value the accuracy and attention to detail provided by this pathlab's histology and cytology services. Their microscopic examination of tissues and cells has been instrumental in diagnosing various cancers and other diseases, enabling me to provide accurate diagnoses and facilitate appropriate treatment plans.",
+          service: "Histology/Cytology",
+          image: "https://example.com/images/dr-sneha-sharma.jpg"
+        }
+      ];
 
     const totalTestimonials = testimonials.length;
 
@@ -77,8 +78,8 @@ const Testimonials = () => {
 
     return (
         <>
-            <div className=" flex flex-col justify-evenly h-screen bg-gray-50">
-                <div className="text-4xl text-center p-7">What people say</div>
+            <div className=" flex flex-col justify-evenly  bg-gray-50">
+                <div className="text-4xl text-center p-7 text-black">What people say</div>
                 <div className="flex flex-col gap-5 px-6">
                     <div className="md:grid grid-cols-1 md:grid-cols-3 gap-6 hidden ">
                         {Array.from({ length: testimonialsPerPage }, (_, index) => {
@@ -99,7 +100,7 @@ const Testimonials = () => {
                                             />
                                         </div>
                                         <div className="text-start">
-                                            <div className="text-xl font-semibold">
+                                            <div className="text-xl font-semibold text-black">
                                                 {testimonial.name}
                                             </div>
                                             <div className="text-sm text-gray-500">
@@ -134,7 +135,7 @@ const Testimonials = () => {
                                             alt={testimonial.name}
                                         />
                                         <div className="text-start">
-                                            <div className="text-xl font-semibold">
+                                            <div className="text-xl font-semibold text-black">
                                                 {testimonial.name}
                                             </div>
                                             <div className="text-sm text-gray-500">
@@ -153,10 +154,10 @@ const Testimonials = () => {
                     </div>
                     <div className="flex justify-center gap-2 mt-4">
                         <div onClick={goToPreviousPage}>
-                            <FaCaretLeft className="text-2xl  text-primary" />
+                            <FaCaretLeft className="text-2xl  text-primary text-black" />
                         </div>
                         <div onClick={goToNextPage}>
-                            <FaCaretRight className="text-2xl  text-primary" />
+                            <FaCaretRight className="text-2xl  text-primary text-black" />
                         </div>
                     </div>
                 </div>
