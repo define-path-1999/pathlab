@@ -59,7 +59,7 @@ const Services: React.FC = () => {
                 <div className="flow-root bg-white rounded-lg px-6 pb-8 shadow-md">
                   <div className="-mt-6">
                     <div>
-                      <span className="inline-flex items-center justify-center p-3 bg-indigo-500 rounded-md shadow-lg">
+                      <span className="inline-flex items-center justify-center p-3 bg-[#E82B7B] rounded-md shadow-lg">
                         <span className="text-white text-2xl">{service.icon}</span>
                       </span>
                     </div>

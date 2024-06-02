@@ -6,6 +6,7 @@ import FAQs from '../Faqs';
 import { Button, CircularProgress, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Menu, MenuItem, Skeleton } from '@mui/material';
 import Testimonials from '../Testimonials';
 import Services from '../Services';
+import HealthPackage from '../Healthpackages';
 
 interface FormData {
   name: string;
@@ -216,8 +217,8 @@ const Homepage: React.FC = () => {
           <div className="text-white text-4xl w-1/2 flex items-center justify-center h-full" >
             <div className="mx-10">
               <span className=''>We will help you to become Healthy</span>
-              <div>Book the appointment</div>
-              <Button variant="contained" onClick={scrollToForm}>Appointment</Button>
+              <div>Book an appointment</div>
+              <Button variant="contained" onClick={scrollToForm} className='bg-[#E82B7B]'>Appointment</Button>
             </div>
           </div>
         </div>
@@ -232,8 +233,8 @@ const Homepage: React.FC = () => {
           <div className="text-white text-4xl  flex items-center justify-center h-full" >
             <div className="mx-10">
               <span className=''>We will help you to become Healthy</span>
-              <div>Book the appointment</div>
-              <Button variant="contained" onClick={scrollToForm}>Appointment</Button>
+              <div>Book an appointment</div>
+              <Button variant="contained" onClick={scrollToForm} className='bg-[#E82B7B]'>Appointment</Button>
             </div>
           </div>
         </div>
@@ -241,6 +242,7 @@ const Homepage: React.FC = () => {
       <div className="" ref={servicesRef}>
         <Services />
       </div>
+      <HealthPackage />
       <Dialog open={openDialog} onClose={handleCloseDialog}>
         <DialogTitle>Form Submitted</DialogTitle>
         <DialogContent>
