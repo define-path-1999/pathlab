@@ -1,15 +1,14 @@
-// src/icons.ts
-import { FaCheckCircle, FaTint, FaVial, FaMicroscope, FaShieldAlt, FaFlask, FaHospital, FaBiohazard } from 'react-icons/fa';
+import { FaHeart, FaLungs, FaSyringe, FaTooth, FaBrain, FaShieldVirus, FaVials, FaCheckCircle } from 'react-icons/fa';
 
 export const testIcons: { [key: string]: JSX.Element } = {
-  'CBC': <FaTint />,
-  'Lipid Profile': <FaVial />,
-  'Liver Function': <FaMicroscope />,
-  'Glucose Fasting': <FaFlask />,
-  'Kidney Function': <FaHospital />,
-  'ESR': <FaBiohazard />,
-  'TSH': <FaShieldAlt />,
-  'Urine Routine Examination': <FaCheckCircle />,
+  'CBC': <FaSyringe />,              // Complete Blood Count - Syringe icon
+  'Lipid Profile': <FaHeart />,      // Lipid Profile - Heart icon
+  'Liver Function': <GiLiver />,     // Liver Function - Liver icon
+  'Glucose Fasting': <FaSyringe />,  // Glucose Fasting - Syringe icon (representing blood test)
+  'Kidney Function': <GiKidneys />,    // Kidney Function - (Using Tooth icon as a placeholder)
+  'ESR': <FaVials />,                // ESR - Vials icon (representing lab tests)
+  'TSH': <FaBrain />,                // Thyroid Stimulating Hormone - Brain icon (representing hormone regulation)
+  'Urine Routine Examination': <FaShieldVirus />, // Urine Routine - Shield Virus icon
 };
 
 // src/types.ts
@@ -26,6 +25,7 @@ export interface Test {
   }
 // src/components/HealthPackage.tsx
 import React from 'react';
+import { GiKidneys, GiLiver } from 'react-icons/gi';
 // import { PackageDetails } from '../types';
 // import { testIcons } from '../icons';
 
