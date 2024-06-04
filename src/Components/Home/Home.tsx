@@ -1,12 +1,24 @@
-"use client"
-import React, { useEffect, useRef, useState } from 'react';
-import TextField from '@mui/material/TextField';
-import { Footer } from '../Footer';
-import FAQs from '../Faqs';
-import { Button, CircularProgress, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Menu, MenuItem, Skeleton } from '@mui/material';
-import Testimonials from '../Testimonials';
-import Services from '../Services';
-import HealthPackage from '../Healthpackages';
+"use client";
+import React, { useEffect, useRef, useState } from "react";
+import TextField from "@mui/material/TextField";
+import { Footer } from "../Footer";
+import FAQs from "../Faqs";
+import axios from "axios";
+import {
+  Button,
+  CircularProgress,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
+  Menu,
+  MenuItem,
+  Skeleton,
+} from "@mui/material";
+import Testimonials from "../Testimonials";
+import Services from "../Services";
+import HealthPackage from "../Healthpackages";
 
 interface FormData {
   name: string;
@@ -24,48 +36,45 @@ interface FormData {
 const Homepage: React.FC = () => {
   // State to manage form inputs
   const [formData, setFormData] = useState<FormData>({
-    name: '',
+    name: "",
     address: {
-      flatNumber: '',
-      buildingNumber: '',
-      landmark: '',
-      city: '',
+      flatNumber: "",
+      buildingNumber: "",
+      landmark: "",
+      city: "",
     },
-    contactNumber: '',
-    bookingTime: '',
+    contactNumber: "",
+    bookingTime: "",
   });
 
   const [openDialog, setOpenDialog] = useState(false);
   const [loading, setLoading] = useState(false); // Add loading state
 
-
   // Function to handle form submission
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
-    console.log('Form submitted:', formData);
-    const requestOptions = {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(formData)
-    };
+    console.log("Form submitted:", formData);
+    // const requestOptions = {
+    //   headers: { "Content-Type": "application/json" },
+    //   data: JSON.stringify(formData),
+    // };
 
     try {
-      const response = await fetch('/api/send-email', requestOptions);
-      if (!response.ok) {
-        throw new Error('Failed to insert data');
+      const baseUrl = "https://pathlab-five.vercel.app";
+      // const baseUrl = "http://localhost:3000";
+      const response = await axios.post(baseUrl + "/api/send-email", formData);
+      if (response.status !== 200) {
+        throw new Error("Failed to insert data");
       }
-      console.log('Form submitted:', formData);
+      console.log("Form submitted:", formData);
       setOpenDialog(true);
     } catch (error) {
-      console.error('Error inserting data:', error);
+      console.error("Error inserting data:", error);
       // Handle error as needed
-
     } finally {
       setLoading(false); // Set loading to false regardless of success or failure
     }
-
-
 
     // setFormData({
     //   name: '',
@@ -85,7 +94,9 @@ const Homepage: React.FC = () => {
   };
 
   // Function to handle input changes
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     const { name, value } = e.target;
     setFormData({
       ...formData,
@@ -108,13 +119,13 @@ const Homepage: React.FC = () => {
   const [imageLoaded, setImageLoaded] = useState<boolean>(false);
   useEffect(() => {
     const imageInstance = new Image();
-    imageInstance.src = './formimage.jpg';
-    imageInstance.addEventListener('load', () => {
+    imageInstance.src = "./formimage.jpg";
+    imageInstance.addEventListener("load", () => {
       setImageLoaded(true);
     });
 
     return () => {
-      imageInstance.removeEventListener('load', () => {
+      imageInstance.removeEventListener("load", () => {
         setImageLoaded(true);
       });
     };
@@ -123,13 +134,13 @@ const Homepage: React.FC = () => {
   const [bgImageLoaded, setBgImageLoaded] = useState(false);
   useEffect(() => {
     const bgImageInstance = new Image();
-    bgImageInstance.src = './home.jpg';
-    bgImageInstance.addEventListener('load', () => {
+    bgImageInstance.src = "./home.jpg";
+    bgImageInstance.addEventListener("load", () => {
       setBgImageLoaded(true);
     });
 
     return () => {
-      bgImageInstance.removeEventListener('load', () => {
+      bgImageInstance.removeEventListener("load", () => {
         setBgImageLoaded(true);
       });
     };
@@ -141,16 +152,15 @@ const Homepage: React.FC = () => {
 
   const scrollToServices = () => {
     if (servicesRef.current) {
-      servicesRef.current.scrollIntoView({ behavior: 'smooth' });
+      servicesRef.current.scrollIntoView({ behavior: "smooth" });
     }
     setMobileMenuAnchor(null);
   };
 
-
   // Function to handle scroll to the form
   const scrollToForm = () => {
     if (formRef.current) {
-      formRef.current.scrollIntoView({ behavior: 'smooth' });
+      formRef.current.scrollIntoView({ behavior: "smooth" });
     }
     setMobileMenuAnchor(null);
   };
@@ -158,10 +168,11 @@ const Homepage: React.FC = () => {
   // Function to handle scroll to the FAQs
   const scrollToFAQs = () => {
     if (faqsRef.current) {
-      faqsRef.current.scrollIntoView({ behavior: 'smooth' });
+      faqsRef.current.scrollIntoView({ behavior: "smooth" });
     }
   };
-  const [mobileMenuAnchor, setMobileMenuAnchor] = useState<HTMLButtonElement | null>(null);
+  const [mobileMenuAnchor, setMobileMenuAnchor] =
+    useState<HTMLButtonElement | null>(null);
 
   // Function to open the mobile navigation menu
   const openMobileMenu = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -181,60 +192,96 @@ const Homepage: React.FC = () => {
             <div className="text-white font-semibold text-xl w-28">
               <img src="/Logo.jpeg" alt="Logo" />
             </div>
-            <Button onClick={openMobileMenu} className="text-white hover:text-gray-200 md:hidden">Menu</Button>
+            <Button
+              onClick={openMobileMenu}
+              className="text-white hover:text-gray-200 md:hidden"
+            >
+              Menu
+            </Button>
             {/* Mobile navigation menu */}
             <Menu
               anchorEl={mobileMenuAnchor}
               open={Boolean(mobileMenuAnchor)}
               onClose={closeMobileMenu}
-              anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }} // Set anchor origin
-              transformOrigin={{ vertical: 'top', horizontal: 'center' }} // Set transform origin
-
+              anchorOrigin={{ vertical: "bottom", horizontal: "center" }} // Set anchor origin
+              transformOrigin={{ vertical: "top", horizontal: "center" }} // Set transform origin
             >
               <MenuItem onClick={scrollToServices}>Services</MenuItem>
               <MenuItem onClick={scrollToForm}>Appointment</MenuItem>
             </Menu>
             <ul className="hidden md:flex space-x-4">
               <li>
-                <a href="#" className="text-white hover:text-gray-200 hidden sm:block">Home</a>
+                <a
+                  href="#"
+                  className="text-white hover:text-gray-200 hidden sm:block"
+                >
+                  Home
+                </a>
               </li>
               <li>
-                <button onClick={scrollToServices} className="text-white hover:text-gray-200">Services</button>
-
+                <button
+                  onClick={scrollToServices}
+                  className="text-white hover:text-gray-200"
+                >
+                  Services
+                </button>
               </li>
               <li>
-                <button onClick={scrollToForm} className="text-white hover:text-gray-200">Appointment</button>
+                <button
+                  onClick={scrollToForm}
+                  className="text-white hover:text-gray-200"
+                >
+                  Appointment
+                </button>
               </li>
             </ul>
           </div>
         </nav>
-        <div className="hidden md:block h-full bg-cover bg-top w-screen" style={{
-          backgroundImage: bgImageLoaded ? "url('./home.jpg')" : 'none',
-        }}>
+        <div
+          className="hidden md:block h-full bg-cover bg-top w-screen"
+          style={{
+            backgroundImage: bgImageLoaded ? "url('./home.jpg')" : "none",
+          }}
+        >
           {!bgImageLoaded && (
             <div className="h-full w-full bg-gray-300 animate-pulse"></div>
           )}
-          <div className="text-white text-4xl w-1/2 flex items-center justify-center h-full" >
+          <div className="text-white text-4xl w-1/2 flex items-center justify-center h-full">
             <div className="mx-10">
-              <span className=''>We will help you to become Healthy</span>
+              <span className="">We will help you to become Healthy</span>
               <div>Book an appointment</div>
-              <Button variant="contained" onClick={scrollToForm} className='bg-[#E82B7B]'>Appointment</Button>
+              <Button
+                variant="contained"
+                onClick={scrollToForm}
+                className="bg-[#E82B7B]"
+              >
+                Appointment
+              </Button>
             </div>
           </div>
         </div>
 
-        <div className="block md:hidden h-full bg-cover bg-center w-screen " style={{
-          backgroundImage: "url('./homephone.jpg')",
-          opacity: 0.8
-        }}>
+        <div
+          className="block md:hidden h-full bg-cover bg-center w-screen "
+          style={{
+            backgroundImage: "url('./homephone.jpg')",
+            opacity: 0.8,
+          }}
+        >
           {!bgImageLoaded && (
             <div className="h-full w-full bg-gray-300 animate-pulse"></div>
           )}
-          <div className="text-white text-4xl  flex items-center justify-center h-full" >
+          <div className="text-white text-4xl  flex items-center justify-center h-full">
             <div className="mx-10">
-              <span className=''>We will help you to become Healthy</span>
+              <span className="">We will help you to become Healthy</span>
               <div>Book an appointment</div>
-              <Button variant="contained" onClick={scrollToForm} className='bg-[#E82B7B]'>Appointment</Button>
+              <Button
+                variant="contained"
+                onClick={scrollToForm}
+                className="bg-[#E82B7B]"
+              >
+                Appointment
+              </Button>
             </div>
           </div>
         </div>
@@ -247,7 +294,13 @@ const Homepage: React.FC = () => {
         <DialogTitle>Form Submitted</DialogTitle>
         <DialogContent>
           <DialogContentText>
-            Dear {formData.name}, your appointment has been confirmed for {formData.bookingTime}. Please make sure to arrive on time. If you have any questions or need to reschedule, feel free to contact us at <span className='text-purple-600 font-semibold'>+91-8920020464</span>.
+            Dear {formData.name}, your appointment has been confirmed for{" "}
+            {formData.bookingTime}. Please make sure to arrive on time. If you
+            have any questions or need to reschedule, feel free to contact us at{" "}
+            <span className="text-purple-600 font-semibold">
+              +91-8920020464
+            </span>
+            .
           </DialogContentText>
         </DialogContent>
         <DialogActions>
@@ -256,14 +309,19 @@ const Homepage: React.FC = () => {
           </Button>
         </DialogActions>
       </Dialog>
-      <div className="min-h-screen w-screen flex flex-col-reverse md:flex-row justify-center items-center bg-gray-50" ref={formRef}>
+      <div
+        className="min-h-screen w-screen flex flex-col-reverse md:flex-row justify-center items-center bg-gray-50"
+        ref={formRef}
+      >
         <div className="md:w-1/2 h-full flex justify-center items-center">
-          <div className='w-[80%] m-4 md:m-0  border-2 border-zinc-500'>
+          <div className="w-[80%] m-4 md:m-0  border-2 border-zinc-500">
             <img src="./formimage.jpg" alt="Form" />
           </div>
         </div>
         <div className="md:w-1/2">
-          <h1 className="text-3xl text-center font-semibold mb-4 text-black">Booking Form</h1>
+          <h1 className="text-3xl text-center font-semibold mb-4 text-black">
+            Booking Form
+          </h1>
           <form onSubmit={handleSubmit} className="max-w-md mx-4 md:mx-auto">
             <div className="mb-4">
               <TextField
@@ -347,7 +405,7 @@ const Homepage: React.FC = () => {
                   required
                   InputLabelProps={{
                     shrink: true,
-                    style: { marginBottom: '8px' } // Adjust the margin as needed
+                    style: { marginBottom: "8px" }, // Adjust the margin as needed
                   }}
                 />
               </div>
@@ -361,12 +419,15 @@ const Homepage: React.FC = () => {
         </div>
       </div>
       <hr />
-      <div className='bg-gray-50'>
+      <div className="bg-gray-50">
         <FAQs />
       </div>
       <hr />
       <Testimonials />
-      <Footer handleservices={scrollToServices} handleappointment={scrollToForm} />
+      <Footer
+        handleservices={scrollToServices}
+        handleappointment={scrollToForm}
+      />
     </>
   );
 };
