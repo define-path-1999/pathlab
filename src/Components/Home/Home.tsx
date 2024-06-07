@@ -62,8 +62,8 @@ const Homepage: React.FC = () => {
 
     try {
       // const baseUrl = "https://pathlab-five.vercel.app";
-      const baseUrl = "http://localhost:3001";
-      const response = await axios.post(baseUrl + "/api/send-email", formData);
+      // const baseUrl = "http://localhost:3001";
+      const response = await axios.post("/api/send-email", formData);
       if (response.status !== 200) {
         throw new Error("Failed to insert data");
       }
