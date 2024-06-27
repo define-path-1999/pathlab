@@ -44,51 +44,6 @@ export async function POST(req: NextRequest) {
     const formatedDate = formatBookingTime(new Date(bookingTime));
 
     const mailOptions: SendMailOptions = {
-<<<<<<< HEAD
-      from: "guptaayush617@gmail.com",//"rishisingh122002@gmail.com",
-      to: "guptaayush617@gmail.com",
-      subject: `A Booking created`,//,#e0f7fa
-      html: `<div style="background: linear-gradient(to bottom right, #E92B7D, #b2ebf2); padding: 20px; max-width: 600px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); border: 1px solid #b2dfdb; margin: 20px auto; background-color: #ffffff; padding-bottom: 40px; ">
-          <div style="display:flex; justify-content:space-between; align-items:center;border-bottom: 2px solid #00796b; padding-bottom: 10px; margin-bottom: 20px;">
-            
-            <h2 style="font-family: Georgia, serif; ">Booking Confirmed!</h2>
-          </div>
-          <div>
-              <p style="margin: 10px 0;  font-size: 1.1em;">
-                  <i class="fas fa-user" style="color: #00796b; margin-right: 5px;"></i>
-                  <strong style="font-weight: bold;">Name:</strong> <span>${name}</span>
-              </p>
-              <p style="margin: 10px 0;  font-size: 1.1em;">
-                  <i class="fas fa-phone" style="color: #00796b; margin-right: 5px;"></i>
-                  <strong style="font-weight: bold;">Contact Number:</strong> <span>${contactNumber}</span>
-              </p>
-              <p style="margin: 10px 0;  font-size: 1.1em;">
-                  <i class="fas fa-clock" style="color: #00796b; margin-right: 5px;"></i>
-                  <strong style="font-weight: bold;">Booking Time:</strong> <span>${formatedDate}</span>
-              </p>
-          </div>
-          <h3 style="font-family: Georgia, serif;  border-bottom: 2px solid #00897b; padding-bottom: 10px; margin-bottom: 20px;">Your Booking Details</h3>
-          <div>
-              <p style="margin: 10px 0;  font-size: 1.1em;">
-                  <i class="fas fa-map-marker-alt" style="color: #00897b; margin-right: 5px;"></i>
-                  <strong style="font-weight: bold;">Flat Number:</strong> <span>${flatNumber}</span>
-              </p>
-              <p style="margin: 10px 0;  font-size: 1.1em;">
-                  <i class="fas fa-building" style="color: #00897b; margin-right: 5px;"></i>
-                  <strong style="font-weight: bold;">Building Number:</strong> <span>${buildingNumber}</span>
-              </p>
-              <p style="margin: 10px 0;  font-size: 1.1em;">
-                  <i class="fas fa-landmark" style="color: #00897b; margin-right: 5px;"></i>
-                  <strong style="font-weight: bold;">Landmark:</strong> <span>${landmark}</span>
-              </p>
-              <p style="margin: 10px 0;  font-size: 1.1em;">
-                  <i class="fas fa-city" style="color: #00897b; margin-right: 5px;"></i>
-                  <strong style="font-weight: bold;">City:</strong> <span>${city}</span>
-              </p>
-          </div>
-        </div>
-       `,
-=======
       from: "difinepathology@gmail.com", //"rishisingh122002@gmail.com",
       // to: "guptaayush617@gmail.com",
       to: process.env.EMAIL,
@@ -125,7 +80,6 @@ export async function POST(req: NextRequest) {
   </div>
 </div>
 `,
->>>>>>> acabc3cf8046fec6f7c2dddb67794651fdbec65c
     };
 
     await transporter.sendMail(mailOptions);
